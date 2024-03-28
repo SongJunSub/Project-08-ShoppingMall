@@ -1,4 +1,4 @@
-package com.shoppingmall.backend;
+package com.shoppingmall.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BasicController {
 
     @GetMapping("/")
-    String mainPage(){
-        return "index.html";
+    public String mainPage(){
+        return "main";
     }
 
     @GetMapping("/about")
     @ResponseBody
-    String about(){
+    public String about(){
         return "Connection Test";
     }
 
