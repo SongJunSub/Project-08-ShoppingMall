@@ -12,14 +12,11 @@
 
     <div th:replace="~{common/navbar.html::navbar}"></div>
 
-    <div class="card" th:each="i : ${items}">
-        <img src="https://placehold.co/300">
-        <div>
-            <h4 th:text="${i.title}"></h4>
-            <a th:href="@{'/detail/' + ${i.id}}">링크</a>
-            <p th:text="${i.price + '원'}"></p>
-        </div>
-    </div>
+    <form action="/write" method="POST">
+        <input name="title">
+        <input name="price">
+        <button type="submit">전송</button>
+    </form>
 
 </body>
 </html>
