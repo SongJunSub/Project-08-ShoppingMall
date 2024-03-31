@@ -2,13 +2,12 @@ package com.shoppingmall.controller;
 
 import com.shoppingmall.entity.Item;
 import com.shoppingmall.repository.ItemRepository;
+import com.shoppingmall.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -18,11 +17,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemController {
 
-    private final ItemRepository itemRepository;
+    private final ItemService itemService;
 
     @GetMapping("/list")
     String list(Model model){
-        List<Item> result = itemRepository.findAll();
+        List<Item> result = itemService.findList();
 
         model.addAttribute("items", result);
 
@@ -36,16 +35,14 @@ public class ItemController {
 
     @PostMapping("/write")
     String write(@RequestParam String title, @RequestParam Integer price){
-        Item item = new Item(title, price);
-
-        itemRepository.save(item);
+        itemService.saveItem(title, price);
 
         return "redirect:/list";
     }
 
     @GetMapping("/detail/{id}")
     String detail(@PathVariable Long id, Model model) throws Exception {
-        Optional<Item> result = itemRepository.findById(id);
+        Optional<Item> result = itemService.findById(id);
 
         if(result.isPresent()){
             model.addAttribute("result", result.get());
@@ -53,7 +50,7 @@ public class ItemController {
             return "detail";
         }
         else{
-            throw new Exception("잘못된 페이지입니다.");
+            return "redirect:/list";
         }
     }
 
