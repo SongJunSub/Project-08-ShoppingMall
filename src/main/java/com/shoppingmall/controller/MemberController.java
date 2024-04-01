@@ -1,7 +1,9 @@
 package com.shoppingmall.controller;
 
+import com.shoppingmall.security.login.CustomUser;
 import com.shoppingmall.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,18 @@ public class MemberController {
         memberService.register(username, password, displayName);
 
         return "redirect:/list";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @GetMapping("/mypage")
+    public String myPage(Authentication authentication){
+        CustomUser result = (CustomUser) authentication.getPrincipal();
+
+        return "mypage";
     }
 
 }

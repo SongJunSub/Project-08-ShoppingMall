@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,12 +12,7 @@
 
     <div th:replace="~{common/navbar.html::navbar}"></div>
 
-    <form action="/write" method="POST">
-        <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
-        <input name="title">
-        <input name="price">
-        <button type="submit">전송</button>
-    </form>
+    <h4>My Page</h4>
 
 </body>
 </html>

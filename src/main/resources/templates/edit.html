@@ -13,6 +13,7 @@
     <div th:replace="~{common/navbar.html::navbar}"></div>
 
     <form th:action="@{'/edit/' + ${result.id}}" method="POST">
+        <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
         <input name="title" th:value="${result.title}">
         <input name="price" th:value="${result.price}">
         <button type="submit">전송</button>

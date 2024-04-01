@@ -15,6 +15,7 @@
     <h4>Sign Up</h4>
 
     <form action="/register" method="POST">
+        <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
         <input name="displayName">
         <input name="username">
         <input name="password" type="password">
