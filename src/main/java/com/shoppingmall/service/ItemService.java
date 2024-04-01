@@ -29,4 +29,14 @@ public class ItemService {
         return itemRepository.findById(id);
     }
 
+    public void editItem(Long id, String title, Integer price){
+        Item item = new Item(id, title, price);
+
+        itemRepository.save(item);
+    }
+
+    public void deleteItem(Long id){
+        itemRepository.deleteById(id);
+    }
+
 }

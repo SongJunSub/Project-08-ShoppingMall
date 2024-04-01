@@ -1,7 +1,6 @@
 package com.shoppingmall.controller;
 
 import com.shoppingmall.entity.Item;
-import com.shoppingmall.repository.ItemRepository;
 import com.shoppingmall.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -52,6 +50,33 @@ public class ItemController {
         else{
             return "redirect:/list";
         }
+    }
+
+    @GetMapping("/edit/{id}")
+    String edit(@PathVariable Long id, Model model) {
+        Optional<Item> result = itemService.findById(id);
+
+        if(result.isPresent()){
+            model.addAttribute("result", result.get());
+
+            return "edit";
+        }
+        else{
+            return "redirect:/list";
+        }
+    }
+
+    @PostMapping("/edit/{id}")
+    String edit(@PathVariable Long id, @RequestParam String title, @RequestParam Integer price){
+        itemService.editItem(id, title, price);
+
+        return "redirect:/list";
+    }
+
+    @DeleteMapping("/delete")
+    ResponseEntity<String> delete(@RequestParam Long id){
+        itemService.deleteItem(id);
+        return ResponseEntity.status(200).body("Success");
     }
 
 }
