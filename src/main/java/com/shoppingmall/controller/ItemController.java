@@ -3,6 +3,9 @@ package com.shoppingmall.controller;
 import com.shoppingmall.entity.Item;
 import com.shoppingmall.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,6 +80,16 @@ public class ItemController {
     ResponseEntity<String> delete(@RequestParam Long id){
         itemService.deleteItem(id);
         return ResponseEntity.status(200).body("Success");
+    }
+
+    @GetMapping("/list/page/{pageNumber}")
+    String listPage(Model model, @PathVariable Integer pageNumber){
+        Page<Item> result = itemService.findPageBy(PageRequest.of(pageNumber, 5));
+
+        model.addAttribute("totalCount", result.getTotalPages());
+        model.addAttribute("items", result);
+
+        return "list";
     }
 
 }

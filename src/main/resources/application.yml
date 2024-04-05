@@ -13,6 +13,16 @@ spring:
         show_sql: true
         format_sql: true
 
+  cloud:
+    aws:
+      credentials:
+        accessKey: AKIAU6GD2KS6XEPDOIKM
+        secretKey: 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
+      s3:
+        bucket: elasticbeanstalk-ap-northeast-2-339713086653
+      region:
+        static: ap-northeast-2
+
 #server:
 #  servlet:
 #    session:

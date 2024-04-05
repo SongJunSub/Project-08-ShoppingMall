@@ -4,6 +4,9 @@ package com.shoppingmall.service;
 import com.shoppingmall.entity.Item;
 import com.shoppingmall.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +40,10 @@ public class ItemService {
 
     public void deleteItem(Long id){
         itemRepository.deleteById(id);
+    }
+
+    public Page<Item> findPageBy(PageRequest of){
+        return itemRepository.findPageBy(of);
     }
 
 }

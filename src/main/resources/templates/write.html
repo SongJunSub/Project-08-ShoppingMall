@@ -19,5 +19,33 @@
         <button type="submit">전송</button>
     </form>
 
+    <input type="file" onchange="uploadImage(this)">
+    <img src="">
+
 </body>
+
+<script>
+
+    const uploadImage = async (e) => {
+
+        const encodedFileName = encodeURIComponent(e.files[0].name);
+
+        //presignedURL
+        let result = await fetch("/presignedURL?filename=" + encodedFileName);
+        result = await result.text();
+
+        const data = await fetch(result, {
+            method: "PUT",
+            body: e.files[0]
+        })
+
+        if(data.ok){
+            console.log(data.url.split("?")[0]);
+            document.querySelector("img").src = data.url.split("?")[0];
+        }
+
+    }
+
+</script>
+
 </html>

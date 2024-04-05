@@ -3,9 +3,10 @@ package com.shoppingmall.service;
 import com.shoppingmall.entity.Member;
 import com.shoppingmall.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +22,10 @@ public class MemberService {
         member.setMember(username, encodedPassword, displayName);
 
         memberRepository.save(member);
+    }
+
+    public Optional<Member> findById(Long id){
+        return memberRepository.findById(id);
     }
 
 }
