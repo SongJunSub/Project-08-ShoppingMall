@@ -1,4 +1,7 @@
 spring:
+  config:
+    import: application-secret.yml
+
   datasource:
     url: jdbc:mysql://shoppingmall.ctaka20akw4u.ap-northeast-2.rds.amazonaws.com/SHOPPING_MALL
     username: admin
@@ -12,16 +15,6 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-
-  cloud:
-    aws:
-      credentials:
-        accessKey: AKIAU6GD2KS6XEPDOIKM
-        secretKey: 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
-      s3:
-        bucket: elasticbeanstalk-ap-northeast-2-339713086653
-      region:
-        static: ap-northeast-2
 
 #server:
 #  servlet:
