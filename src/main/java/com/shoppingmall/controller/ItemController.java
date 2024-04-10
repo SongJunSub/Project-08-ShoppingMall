@@ -1,6 +1,8 @@
 package com.shoppingmall.controller;
 
+import com.shoppingmall.entity.Comment;
 import com.shoppingmall.entity.Item;
+import com.shoppingmall.service.CommentService;
 import com.shoppingmall.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,7 @@ import java.util.Optional;
 public class ItemController {
 
     private final ItemService itemService;
+    private final CommentService commentService;
 
     @GetMapping("/list")
     String list(Model model){
@@ -44,6 +47,8 @@ public class ItemController {
     @GetMapping("/detail/{id}")
     String detail(@PathVariable Long id, Model model) throws Exception {
         Optional<Item> result = itemService.findById(id);
+
+        List<Comment> comments = commentService.findAllByParentId(id);
 
         if(result.isPresent()){
             model.addAttribute("result", result.get());

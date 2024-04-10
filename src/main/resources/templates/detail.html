@@ -19,5 +19,11 @@
         <p th:text="${result.price + '원'}"></p>
     </div>
 
+    <form action="/comment" method="POST">
+        <input name="content">
+        <input type="hidden" name="parentId" th:value="${result.id}"/>
+        <button type="submit">등록</button>
+    </form>
+
 </body>
 </html>
