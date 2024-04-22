@@ -46,4 +46,8 @@ public class ItemService {
         return itemRepository.findPageBy(of);
     }
 
+    public List<Item> searchItem(String searchText){
+        return itemRepository.findAllByTitleContains(searchText);
+    }
+
 }

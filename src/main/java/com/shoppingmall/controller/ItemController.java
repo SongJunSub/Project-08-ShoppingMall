@@ -97,4 +97,12 @@ public class ItemController {
         return "list";
     }
 
+    @GetMapping("/search")
+    String postSearch(@RequestParam String searchText){
+        List<Item> items = itemService.searchItem(searchText);
+        System.out.println(items);
+
+        return "list";
+    }
+
 }
