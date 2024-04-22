@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Table(indexes = @Index(columnList = "title", name = "titleIndex"))
+//Full Text Index
+//Full Text Index를 사용하려면 Native Query를 사용해야 한다.
+//N-Gram Parser 사용 이유 : 한글 때문에
+//CREATE FULLTEXT INDEX 작명 ON 테이블명(컬럼명) WITHN PARSER NGRAM;
 public class Item {
 
     @Id
