@@ -24,7 +24,7 @@ public class SalesController {
     @GetMapping("/order/all")
     public String getOrderAll(){
         salesService.getOrderAll();
-        return "list";
+        return "sales";
     }
 
 }

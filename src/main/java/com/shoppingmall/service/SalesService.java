@@ -1,5 +1,6 @@
 package com.shoppingmall.service;
 
+import com.shoppingmall.dto.SalesDto;
 import com.shoppingmall.entity.Member;
 import com.shoppingmall.entity.Sales;
 import com.shoppingmall.repository.SalesRepository;
@@ -25,7 +26,12 @@ public class SalesService {
     }
 
     public List<Sales> getOrderAll() {
-        List<Sales> result = salesRepository.findAll();
+        List<Sales> result = salesRepository.customFindAll();
+
+        SalesDto salesDto = new SalesDto();
+        salesDto.setItemName(result.get(0).getItemName());
+        salesDto.setPrice(result.get(0).getPrice());
+        salesDto.setUsername(result.get(0).getMember().getUsername());
 
         return result;
     }
