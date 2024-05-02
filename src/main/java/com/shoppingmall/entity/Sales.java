@@ -1,14 +1,17 @@
 package com.shoppingmall.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@ToString
+@NoArgsConstructor
 public class Sales {
 
     @Id
@@ -21,9 +24,18 @@ public class Sales {
 
     private Integer count;
 
-    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name = "member_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Member member;
 
     @CreationTimestamp
     private LocalDateTime created;
+
+    public Sales(String title, Integer price, Integer count, Member member) {
+        this.itemName = title;
+        this.price = price;
+        this.count = count;
+        this.member = member;
+    }
 
 }

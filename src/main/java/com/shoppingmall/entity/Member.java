@@ -6,9 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Getter
+@ToString
 @NoArgsConstructor
 public class Member {
 
@@ -22,6 +24,10 @@ public class Member {
     private String password;
 
     private String displayName;
+
+    public Member(Long id){
+        this.id = id;
+    }
 
     public void setMember(String username, String password, String displayName){
         this.username = username;

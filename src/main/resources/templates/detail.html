@@ -25,5 +25,12 @@
         <button type="submit">등록</button>
     </form>
 
+    <form action="/order" method="POST">
+        <input name="title" th:value="${result.title}">
+        <input name="price" th:value="${result.price}">
+        <input name="count" th:value="${result.count}">
+        <button style="text-align: left">주문</button>
+    </form>
+
 </body>
 </html>
