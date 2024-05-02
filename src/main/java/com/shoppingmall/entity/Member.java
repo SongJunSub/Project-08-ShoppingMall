@@ -1,12 +1,12 @@
 package com.shoppingmall.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -34,5 +34,9 @@ public class Member {
         this.password = password;
         this.displayName = displayName;
     }
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "member")
+    List<Sales> sales = new ArrayList<>();
 
 }
